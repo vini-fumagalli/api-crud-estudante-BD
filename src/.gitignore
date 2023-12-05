@@ -1,0 +1,6 @@
+# ignorar pastas bin e obj 
+
+bin/
+obj/
+
+# .fake

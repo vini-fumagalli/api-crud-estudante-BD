@@ -97,8 +97,9 @@ public class StudentService : IStudentService
             UpdatedAt = DateTime.Now.ToLocalTime()
         };
         studentToUpdate.AverageGrade = CalcAverageGrade(
-        studentToUpdate.Test1Grade, studentToUpdate.Test2Grade,
-        studentToUpdate.ProjectGrade);
+                                    studentToUpdate.Test1Grade,
+                                    studentToUpdate.Test2Grade,
+                                    studentToUpdate.ProjectGrade);
 
         studentToUpdate.Aprov = AprovOrNot(studentToUpdate.AverageGrade);
 

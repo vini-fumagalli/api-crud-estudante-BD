@@ -36,7 +36,9 @@ public class StudentService : IStudentService
             CreatedAt = DateTime.Now.ToLocalTime()
         };
         studentToCreate.AverageGrade = CalcAverageGrade(
-        studentToCreate.Test1Grade, studentToCreate.Test2Grade, studentToCreate.ProjectGrade);
+                                    studentToCreate.Test1Grade,
+                                    studentToCreate.Test2Grade,
+                                    studentToCreate.ProjectGrade);
 
         studentToCreate.Aprov = AprovOrNot(studentToCreate.AverageGrade);
 

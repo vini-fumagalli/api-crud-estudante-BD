@@ -1,7 +1,11 @@
 using Api.CrossCutting.DependencyInjection;
+using Api.CrossCutting.Mapping;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Configurando Mapping
+builder.Services.AddAutoMapper(typeof(DtoToEntityProfile));
 
 // Add services to the container.
 //Cofigurando a Injeção de Dependência

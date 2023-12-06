@@ -1,6 +1,7 @@
 using Api.Domain.DTOs;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces.Repositories;
+using Api.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Application.Controllers;

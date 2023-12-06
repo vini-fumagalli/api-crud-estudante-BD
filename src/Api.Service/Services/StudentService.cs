@@ -1,46 +1,26 @@
 using Api.Domain.DTOs;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces.Repositories;
+using Api.Domain.Interfaces.Services;
+using AutoMapper;
 using Azure;
 
 namespace Api.Service.Services;
 
-public class StudentService : IStudentService
+public class StudentService : IStudentServiceCrud
 {
     private IStudentRepository _repository;
+    private IMapper _mapper;
 
-    public StudentService(IStudentRepository studentRepository)
+    public StudentService(IMapper mapper, IStudentRepository studentRepository)
     {
         _repository = studentRepository;
-    }
-
-    public bool AprovOrNot(double averageGrade)
-    {
-        double schoolAverageGrade = 7.0;
-        return (averageGrade >= schoolAverageGrade) ? true : false;
-    }
-
-    public double CalcAverageGrade(double test1Grade, double test2Grade, double projectGrade)
-    {
-        return Math.Round((0.35 * test1Grade) + (0.35 * test2Grade) + (0.3 * projectGrade), 2);
+        _mapper = mapper;
     }
 
     public async Task<ResponseEntity> CreateStudent(StudentCreateDto student)
     {
-        var studentToCreate = new StudentEntity
-        {
-            NameId = student.NameId!.Replace(" ", ".").ToUpper(),
-            Test1Grade = student.Test1Grade,
-            Test2Grade = student.Test2Grade,
-            ProjectGrade = student.ProjectGrade,
-            CreatedAt = DateTime.Now.ToLocalTime()
-        };
-        studentToCreate.AverageGrade = CalcAverageGrade(
-                                    studentToCreate.Test1Grade,
-                                    studentToCreate.Test2Grade,
-                                    studentToCreate.ProjectGrade);
-
-        studentToCreate.Aprov = AprovOrNot(studentToCreate.AverageGrade);
+        var studentToCreate = _mapper.Map<StudentEntity>(student);
 
         var response = await _repository.CreateStudent(studentToCreate);
 
@@ -96,12 +76,12 @@ public class StudentService : IStudentService
             ProjectGrade = student.ProjectGrade,
             UpdatedAt = DateTime.Now.ToLocalTime()
         };
-        studentToUpdate.AverageGrade = CalcAverageGrade(
-                                    studentToUpdate.Test1Grade,
-                                    studentToUpdate.Test2Grade,
-                                    studentToUpdate.ProjectGrade);
+        // studentToUpdate.AverageGrade = CalcAverageGrade(
+        //                             studentToUpdate.Test1Grade,
+        //                             studentToUpdate.Test2Grade,
+        //                             studentToUpdate.ProjectGrade);
 
-        studentToUpdate.Aprov = AprovOrNot(studentToUpdate.AverageGrade);
+        // studentToUpdate.Aprov = AprovOrNot(studentToUpdate.AverageGrade);
 
         var response = await _repository.UpdateStudent(studentToUpdate);
 

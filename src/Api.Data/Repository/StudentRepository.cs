@@ -25,11 +25,8 @@ public class StudentRepository : IStudentRepository
             {
                 await _dataset.AddAsync(student);
                 await _contextStudent.SaveChangesAsync();
-                if (_contextStudent.SaveChangesAsync().IsCompletedSuccessfully)
-                {
-                    return student;
-                }
-                return null;
+
+                return student;
             }
             return null;
         }
@@ -50,11 +47,8 @@ public class StudentRepository : IStudentRepository
             {
                 _dataset.Remove(student);
                 await _contextStudent.SaveChangesAsync();
-                if (_contextStudent.SaveChangesAsync().IsCompletedSuccessfully)
-                {
-                    return true;
-                }
-                return false;
+
+                return true;
             }
             return false;
         }
@@ -104,10 +98,10 @@ public class StudentRepository : IStudentRepository
             var studentToUpdate = await _dataset
             .SingleOrDefaultAsync(s => s.NameId!.Equals(student.NameId));
 
-            student.CreatedAt = studentToUpdate!.CreatedAt;
-
             if (studentToUpdate != null)
             {
+                student.CreatedAt = studentToUpdate!.CreatedAt;
+
                 _dataset.Entry(studentToUpdate).CurrentValues.SetValues(student);
                 await _contextStudent.SaveChangesAsync();
 

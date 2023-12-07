@@ -110,11 +110,8 @@ public class StudentRepository : IStudentRepository
             {
                 _dataset.Entry(studentToUpdate).CurrentValues.SetValues(student);
                 await _contextStudent.SaveChangesAsync();
-                if (_contextStudent.SaveChangesAsync().IsCompletedSuccessfully)
-                {
-                    return student;
-                }
-                return null;
+
+                return student;
             }
             return null;
         }

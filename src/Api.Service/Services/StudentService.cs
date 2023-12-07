@@ -68,20 +68,8 @@ public class StudentService : IStudentServiceCrud
 
     public async Task<ResponseEntity> UpdateStudent(string nameId, StudentUpdateDto student)
     {
-        var studentToUpdate = new StudentEntity
-        {
-            NameId = nameId.Replace(" ", ".").ToUpper(),
-            Test1Grade = student.Test1Grade,
-            Test2Grade = student.Test2Grade,
-            ProjectGrade = student.ProjectGrade,
-            UpdatedAt = DateTime.Now.ToLocalTime()
-        };
-        // studentToUpdate.AverageGrade = CalcAverageGrade(
-        //                             studentToUpdate.Test1Grade,
-        //                             studentToUpdate.Test2Grade,
-        //                             studentToUpdate.ProjectGrade);
-
-        // studentToUpdate.Aprov = AprovOrNot(studentToUpdate.AverageGrade);
+        var studentToUpdate = _mapper.Map<StudentEntity>(student);
+        studentToUpdate.NameId = nameId.Replace(" ", ".").ToUpper();
 
         var response = await _repository.UpdateStudent(studentToUpdate);
 

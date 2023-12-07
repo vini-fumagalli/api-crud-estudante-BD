@@ -24,6 +24,11 @@ public class StudentController : ControllerBase
     {
         try
         {
+            if (student.NameId!.Equals(null))
+            {
+                return BadRequest();
+            }
+
             var response = await _service.CreateStudent(student);
             return Ok(response);
         }

@@ -9,8 +9,8 @@ namespace Api.Service.Services;
 
 public class StudentService : IStudentServiceCrud
 {
-    private IStudentRepository _repository;
-    private IMapper _mapper;
+    private readonly IStudentRepository _repository;
+    private readonly IMapper _mapper;
 
     public StudentService(IStudentRepository studentRepository, IMapper mapper)
     {

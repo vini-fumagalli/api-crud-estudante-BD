@@ -21,8 +21,8 @@ builder.Services.AddSwaggerGen(s =>
         {
             Version = "v1",
             Title = "Menu de Estudantes",
-            Description = "Api de CRUD de Estudantes com Banco de Dados feito através de migrações \n\n pelo EntityFramework" +
-            "e construído com arquitetura DDD",
+            Description = "Api de CRUD de Estudantes construído com arquitetura DDD e com Banco de Dados" +
+            "\n\n feito através de migrações pelo EntityFramework",
             TermsOfService = new Uri("http://www.linkedin.com/in/vini-fumagalli"),
             Contact = new OpenApiContact
             {

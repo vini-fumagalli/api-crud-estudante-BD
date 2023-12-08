@@ -12,7 +12,7 @@ public class StudentService : IStudentServiceCrud
     private IStudentRepository _repository;
     private IMapper _mapper;
 
-    public StudentService(IMapper mapper, IStudentRepository studentRepository)
+    public StudentService(IStudentRepository studentRepository, IMapper mapper)
     {
         _repository = studentRepository;
         _mapper = mapper;

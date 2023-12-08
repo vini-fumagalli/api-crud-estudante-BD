@@ -48,10 +48,6 @@ public class StudentController : ControllerBase
         {
             var response = await _service.GetStudentById(nameId);
 
-            if(response.Success.Equals(false))
-            {
-                return NotFound(response);
-            }
             return Ok(response);
         }
         catch (Exception ex)
@@ -70,10 +66,6 @@ public class StudentController : ControllerBase
         {
             var response = await _service.UpdateStudent(nameId, student);
 
-             if(response.Success.Equals(false))
-            {
-                return NotFound(response);
-            }
             return Ok(response);
         }
         catch (Exception ex)

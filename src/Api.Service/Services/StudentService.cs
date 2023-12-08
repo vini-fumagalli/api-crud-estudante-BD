@@ -58,7 +58,7 @@ public class StudentService : IStudentServiceCrud
         nameId = nameId.Replace(" ", ".").ToUpper();
         var response = await _repository.DeleteStudent(nameId);
 
-        if(response!.Equals(null))
+        if(response!.Equals(false))
         {
             return new ResponseEntity
             {

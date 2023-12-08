@@ -38,6 +38,15 @@ public class StudentService : IStudentServiceCrud
 
         var response = await _repository.UpdateStudent(studentToUpdate);
 
+        if(response!.Equals(null))
+        {
+            return new ResponseEntity
+            {
+                Success = false,
+                Response = response
+            };
+        }
+
         return new ResponseEntity
         {
             Success = true,
@@ -48,6 +57,15 @@ public class StudentService : IStudentServiceCrud
     {
         nameId = nameId.Replace(" ", ".").ToUpper();
         var response = await _repository.DeleteStudent(nameId);
+
+        if(response!.Equals(null))
+        {
+            return new ResponseEntity
+            {
+                Success = false,
+                Response = response
+            };
+        }
 
         return new ResponseEntity
         {
@@ -61,6 +79,15 @@ public class StudentService : IStudentServiceCrud
         nameId = nameId.Replace(" ", ".").ToUpper();
         var response = await _repository.GetStudentById(nameId);
 
+        if(response!.Equals(null))
+        {
+            return new ResponseEntity
+            {
+                Success = false,
+                Response = response
+            };
+        }
+
         return new ResponseEntity
         {
             Success = true,
@@ -71,6 +98,15 @@ public class StudentService : IStudentServiceCrud
     public async Task<ResponseEntity> GetStudents()
     {
         var response = await _repository.GetStudents();
+
+        if(response.Count.Equals(0))
+        {
+            return new ResponseEntity
+            {
+                Success = false,
+                Response = response
+            };
+        }
 
         return new ResponseEntity
         {

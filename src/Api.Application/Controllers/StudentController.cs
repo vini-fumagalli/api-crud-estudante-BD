@@ -47,6 +47,11 @@ public class StudentController : ControllerBase
         try
         {
             var response = await _service.GetStudentById(nameId);
+
+            if(response.Success.Equals(false))
+            {
+                return NotFound(response);
+            }
             return Ok(response);
         }
         catch (Exception ex)
@@ -64,6 +69,11 @@ public class StudentController : ControllerBase
         try
         {
             var response = await _service.UpdateStudent(nameId, student);
+
+             if(response.Success.Equals(false))
+            {
+                return NotFound(response);
+            }
             return Ok(response);
         }
         catch (Exception ex)
@@ -81,6 +91,11 @@ public class StudentController : ControllerBase
         try
         {
             var response = await _service.GetStudents();
+
+            if(response.Success.Equals(false))
+            {
+                return NotFound(response);
+            }
             return Ok(response);
         }
         catch (Exception ex)
@@ -98,6 +113,11 @@ public class StudentController : ControllerBase
         try
         {
             var response = await _service.DeleteStudent(nameId);
+
+            if(response.Success.Equals(false))
+            {
+                return NotFound(response);
+            }
             return Ok(response);
         }
         catch (Exception ex)

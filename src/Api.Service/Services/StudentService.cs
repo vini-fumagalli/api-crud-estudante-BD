@@ -31,6 +31,19 @@ public class StudentService : IStudentServiceCrud
         };
     }
 
+    public async Task<ResponseEntity> UpdateStudent(string nameId, StudentUpdateDto student)
+    {
+        var studentToUpdate = _mapper.Map<StudentEntity>(student);
+        studentToUpdate.NameId = nameId.Replace(" ", ".").ToUpper();
+
+        var response = await _repository.UpdateStudent(studentToUpdate);
+
+        return new ResponseEntity
+        {
+            Success = true,
+            Response = response
+        };
+    }
     public async Task<ResponseEntity> DeleteStudent(string nameId)
     {
         nameId = nameId.Replace(" ", ".").ToUpper();
@@ -66,17 +79,4 @@ public class StudentService : IStudentServiceCrud
         };
     }
 
-    public async Task<ResponseEntity> UpdateStudent(string nameId, StudentUpdateDto student)
-    {
-        var studentToUpdate = _mapper.Map<StudentEntity>(student);
-        studentToUpdate.NameId = nameId.Replace(" ", ".").ToUpper();
-
-        var response = await _repository.UpdateStudent(studentToUpdate);
-
-        return new ResponseEntity
-        {
-            Success = true,
-            Response = response
-        };
-    }
 }

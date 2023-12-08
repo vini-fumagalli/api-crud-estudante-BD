@@ -10,7 +10,5 @@ public class ConfigureService
     public static void ConfigureDependenciesService(IServiceCollection serviceCollection)
     {
         serviceCollection.AddTransient<IStudentServiceCrud, StudentService>();
-        //serviceCollection.AddTransient<IStudentServiceLogics, DtoToEntityProfile>();
-
     }
 }

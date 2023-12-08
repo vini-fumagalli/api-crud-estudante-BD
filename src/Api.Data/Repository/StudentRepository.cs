@@ -61,6 +61,7 @@ public class StudentRepository : IStudentRepository
     public async Task<bool> ExistsStudent(string nameId)
     {
         return await _dataset
+        .AsNoTracking()
         .AnyAsync(s => s.NameId!.Equals(nameId));
     }
 
@@ -69,6 +70,7 @@ public class StudentRepository : IStudentRepository
         try
         {
             var student = await _dataset
+            .AsNoTracking()
             .FirstOrDefaultAsync(s => s.NameId!.Equals(nameId));
 
             return student;
@@ -83,7 +85,7 @@ public class StudentRepository : IStudentRepository
     {
         try
         {
-            return await _dataset.ToListAsync();
+            return await _dataset.AsNoTracking().ToListAsync();
         }
         catch (Exception ex)
         {

@@ -61,7 +61,6 @@ public class StudentRepository : IStudentRepository
     public async Task<bool> ExistsStudent(string nameId)
     {
         return await _dataset
-        .AsNoTracking()
         .AnyAsync(s => s.NameId!.Equals(nameId));
     }
 

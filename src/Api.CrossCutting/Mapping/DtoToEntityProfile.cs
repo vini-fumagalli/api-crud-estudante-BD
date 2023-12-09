@@ -25,6 +25,7 @@ public class DtoToEntityProfile : Profile, IStudentServiceLogics
             dest.AverageGrade = CalcAverageGrade(src.Test1Grade, src.Test2Grade, src.ProjectGrade);
             dest.Aprov = AprovOrNot(dest.AverageGrade);
         });
+
     }
 
     public bool AprovOrNot(double averageGrade)

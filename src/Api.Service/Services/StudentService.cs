@@ -21,8 +21,8 @@ public class StudentService : IStudentServiceCrud
     public async Task<ResponseEntity> CreateStudent(StudentCreateDto student)
     {
         var studentToCreate = _mapper.Map<StudentEntity>(student);
-
-        var response = await _repository.CreateStudent(studentToCreate);
+        var studentEntity = await _repository.CreateStudent(studentToCreate);
+        var response = _mapper.Map<StudentDtoResult>(studentEntity);
 
         return new ResponseEntity
         {
@@ -36,7 +36,8 @@ public class StudentService : IStudentServiceCrud
         var studentToUpdate = _mapper.Map<StudentEntity>(student);
         studentToUpdate.NameId = nameId.Replace(" ", ".").ToUpper();
 
-        var response = await _repository.UpdateStudent(studentToUpdate);
+        var studentEntity = await _repository.UpdateStudent(studentToUpdate);
+        var response = _mapper.Map<StudentDtoResult>(studentEntity);
 
         if(response!.Equals(null))
         {
@@ -77,7 +78,8 @@ public class StudentService : IStudentServiceCrud
     public async Task<ResponseEntity> GetStudentById(string nameId)
     {
         nameId = nameId.Replace(" ", ".").ToUpper();
-        var response = await _repository.GetStudentById(nameId);
+        var student = await _repository.GetStudentById(nameId);
+        var response = _mapper.Map<StudentDtoResult>(student);
 
         if(response!.Equals(null))
         {
@@ -97,7 +99,8 @@ public class StudentService : IStudentServiceCrud
 
     public async Task<ResponseEntity> GetStudents()
     {
-        var response = await _repository.GetStudents();
+        var students = await _repository.GetStudents();
+        var response = _mapper.Map<List<StudentDtoResult>>(students);
 
         if(response.Count.Equals(0))
         {

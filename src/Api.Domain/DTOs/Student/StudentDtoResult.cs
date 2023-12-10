@@ -1,4 +1,4 @@
-namespace Api.Domain.DTOs;
+namespace Api.Domain.DTOs.Student;
 
 public class StudentDtoResult
 {

@@ -1,4 +1,5 @@
 using Api.Domain.DTOs;
+using Api.Domain.DTOs.Student;
 using Api.Domain.Entities;
 using Api.Domain.Interfaces.Services;
 using AutoMapper;

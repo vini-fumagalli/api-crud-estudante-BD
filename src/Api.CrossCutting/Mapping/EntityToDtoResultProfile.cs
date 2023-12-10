@@ -1,4 +1,5 @@
 using Api.Domain.DTOs;
+using Api.Domain.DTOs.Student;
 using Api.Domain.Entities;
 using AutoMapper;
 
@@ -13,7 +14,6 @@ public class EntityToDtoResultProfile : Profile
         {
             dest.CreatedAt = FormatDateTime(src.CreatedAt);
             dest.UpdatedAt = FormatDateTime(src.UpdatedAt);
-
         });
     }
 

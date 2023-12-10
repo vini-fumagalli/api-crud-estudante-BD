@@ -1,4 +1,5 @@
 using Api.Domain.DTOs;
+using Api.Domain.DTOs.Student;
 using Api.Domain.Entities;
 
 namespace Api.Domain.Interfaces.Services;

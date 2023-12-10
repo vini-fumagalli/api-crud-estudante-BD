@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 //Configurando Mapping
 builder.Services.AddAutoMapper(typeof(DtoToEntityProfile));
+builder.Services.AddAutoMapper(typeof(EntityToDtoResultProfile));
 
 // Add services to the container.
 //Cofigurando a Injeção de Dependência

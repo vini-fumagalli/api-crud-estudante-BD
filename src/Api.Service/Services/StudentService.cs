@@ -101,7 +101,8 @@ public class StudentService : IStudentServiceCrud
     public async Task<ResponseEntity> GetStudents()
     {
         var students = await _repository.GetStudents();
-        var response = _mapper.Map<List<StudentDtoResult>>(students);
+        var orderedList = students.OrderBy(s => s.NameId);
+        var response = _mapper.Map<List<StudentDtoResult>>(orderedList);
 
         if(response.Count.Equals(0))
         {

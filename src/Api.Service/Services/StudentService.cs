@@ -27,7 +27,7 @@ public class StudentService : IStudentServiceCrud
 
         return new ResponseEntity
         {
-            Success = true,
+            Success = response != null,
             Response = response
         };
     }
@@ -40,18 +40,9 @@ public class StudentService : IStudentServiceCrud
         var studentEntity = await _repository.UpdateStudent(studentToUpdate);
         var response = _mapper.Map<StudentDtoResult>(studentEntity);
 
-        if(response!.Equals(null))
-        {
-            return new ResponseEntity
-            {
-                Success = false,
-                Response = response
-            };
-        }
-
         return new ResponseEntity
         {
-            Success = true,
+            Success = response != null,
             Response = response
         };
     }
@@ -60,18 +51,9 @@ public class StudentService : IStudentServiceCrud
         nameId = nameId.Replace(" ", ".").ToUpper();
         var response = await _repository.DeleteStudent(nameId);
 
-        if(response!.Equals(false))
-        {
-            return new ResponseEntity
-            {
-                Success = false,
-                Response = response
-            };
-        }
-
         return new ResponseEntity
         {
-            Success = true,
+            Success = response,
             Response = response
         };
     }
@@ -82,18 +64,9 @@ public class StudentService : IStudentServiceCrud
         var student = await _repository.GetStudentById(nameId);
         var response = _mapper.Map<StudentDtoResult>(student);
 
-        if(response!.Equals(null))
-        {
-            return new ResponseEntity
-            {
-                Success = false,
-                Response = response
-            };
-        }
-
         return new ResponseEntity
         {
-            Success = true,
+            Success = response != null,
             Response = response
         };
     }
@@ -104,18 +77,9 @@ public class StudentService : IStudentServiceCrud
         var orderedList = students.OrderBy(s => s.NameId);
         var response = _mapper.Map<List<StudentDtoResult>>(orderedList);
 
-        if(response.Count.Equals(0))
-        {
-            return new ResponseEntity
-            {
-                Success = false,
-                Response = response
-            };
-        }
-
         return new ResponseEntity
         {
-            Success = true,
+            Success = response.Any(),
             Response = response
         };
     }
